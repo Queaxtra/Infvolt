@@ -1,6 +1,5 @@
 <script>
   import Navbar from "./components/Navbar.svelte";
-  import Footer from "./components/Footer.svelte";
   let userid = "01GHR0XWEA8ZNA2Z4CQ8A1VPM0";
   import { API } from "revolt-api";
   const client = new API({
@@ -51,4 +50,3 @@
     {/if}
   </div>
 </div>
-<Footer />
