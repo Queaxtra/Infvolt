@@ -5,7 +5,7 @@
   import { API } from "revolt-api";
   const client = new API({
     authentication: {
-      revolt: "f87zd1xDzAZFyeHXbbOzE-kv7NUPWzNsdBNKooV9kw5RjjKg48UDZyzsdv5kmiXF",
+      revolt: import.meta.env.VITE_TOKEN,
     },
   });
 
