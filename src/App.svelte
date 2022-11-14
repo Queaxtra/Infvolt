@@ -23,6 +23,11 @@
         document.getElementById("online").style.color = "gray";
       }
     });
+
+    client.get(`/users/${userid}/profile`).then(x => {
+      const bio = x.content;
+      document.getElementById("bio").innerHTML = bio.replace(/\n/g, "<br>");
+    });
   }
 </script>
 
@@ -40,12 +45,15 @@
     {/if}
     {#if getUser }
     <div class="lg:ml-[70rem] lg:-mt-[15rem] md:ml-64 sm:ml-80 w-70 sm:w-96 bg-white rounded m-5 p-5">
-      <p id="id" class="text-gray-500 text-xs"></p>
+      <p id="id" class="text-gray-500 text-xs">012345678901234567890123456</p>
       <div>
-        <img id="avatar" class="flex mt-3 w-14 h-14 rounded-full" />
-        <p class="absolute left-[7rem] top-[38rem] sm:left-[25.5rem] sm:top-[39.5rem] md:left-[22rem] md:top-[39.5rem] lg:left-[75.5rem] lg:top-[23rem]" id="username"></p>
+        <img id="avatar" src="https://i.hizliresim.com/ixqwh1j.png" class="flex mt-3 w-14 h-14 rounded-full" />
+        <p class="absolute left-[7rem] top-[38rem] sm:left-[25.5rem] sm:top-[39.5rem] md:left-[22rem] md:top-[39.5rem] lg:left-[75.5rem] lg:top-[23rem]" id="username">User</p>
       </div>
-      <p id="online" class="absolute text-gray-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]"></p>
+      <p id="online" class="absolute text-gray-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]">Offline</p>
+      <div class="flex border-l-4 border-gray-500 p-5 rounded mt-5 bg-gray-500/20 break-normal">
+        <span id="bio" class="text-gray-700 text-xs">About</span>
+      </div>
     </div>
     {/if}
   </div>
