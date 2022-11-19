@@ -1,7 +1,3 @@
-<script>
-    import Router, {location, link} from 'svelte-spa-router';
-</script>
-
 <div>
   <h1 class="mt-20 text-center text-white text-[3rem] font-extrabold">Infvolt <span class="absolute rotate-12 top-16 -ml-6 whitespace-nowrap rounded bg-[#fe4654] px-2.5 py-0.5 text-sm text-BLACK">BETA</span></h1>
   <p class="top-36 italic text-center text-gray-500 text-xs font-semibold">Made with by <span>UNOXDEVS</span></p>
