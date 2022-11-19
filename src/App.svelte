@@ -1,33 +1,24 @@
-<script>
+<script lang="ts">
   import Navbar from "./components/Navbar.svelte";
-  let userid = "01GHR0XWEA8ZNA2Z4CQ8A1VPM0";
   import { API } from "revolt-api";
-  const client = new API({
+  let userInfo = {};
+  let userProfile = {};
+  let userid = "01GHR0XWEA8ZNA2Z4CQ8A1VPM0";
+  let client = new API({
     authentication: {
       revolt: import.meta.env.VITE_TOKEN,
     },
   });
 
   async function getUser() {
-    client.get(`/users/${userid}`).then(x => {
-      document.getElementById("username").innerHTML = x.username;
-      document.getElementById("id").innerHTML = x._id;
-      document.getElementById("avatar").src = "https://autumn.revolt.chat/avatars/" + x.avatar._id + "/" + x.avatar.filename;
-      const online = x.online;
+    let response = await client.get(`/users/${userid}`);
+    userInfo = response;
+    document.getElementById("status-text").innerHTML = userInfo.status.text;
+    document.getElementById("avatar").src = "https://autumn.revolt.chat/avatars/" + userInfo.avatar._id + "/" + userInfo.avatar.filename;
 
-      if (online) {
-        document.getElementById("online").innerHTML = "Online";
-        document.getElementById("online").style.color = "green";        
-      } else {
-        document.getElementById("online").innerHTML = "Offline";
-        document.getElementById("online").style.color = "gray";
-      }
-    });
-
-    client.get(`/users/${userid}/profile`).then(x => {
-      const bio = x.content;
-      document.getElementById("bio").innerHTML = bio.replace(/\n/g, "<br>");
-    });
+    let responsee = await client.get(`/users/${userid}/profile`);
+    userProfile = responsee;
+    document.getElementById("bio").innerHTML = userProfile.content.replace(/\n/g, "<br>")
   }
 </script>
 
@@ -44,13 +35,24 @@
     <button on:click={getUser} class="mt-5 lg:ml-80 md:ml-64 sm:ml-80 sm:mt-5 inline-block rounded bg-[#fe4654] px-8 py-3 text-sm font-medium text-white">Submit</button>
     {/if}
     {#if getUser }
-    <div class="lg:ml-[70rem] lg:-mt-[15rem] md:ml-64 sm:ml-80 w-70 sm:w-96 bg-white rounded m-5 p-5">
-      <p id="id" class="text-gray-500 text-xs">012345678901234567890123456</p>
-      <div>
-        <img id="avatar" src="https://i.hizliresim.com/ixqwh1j.png" class="flex mt-3 w-14 h-14 rounded-full" />
-        <p class="absolute left-[7rem] top-[38rem] sm:left-[25.5rem] sm:top-[39.5rem] md:left-[22rem] md:top-[39.5rem] lg:left-[75.5rem] lg:top-[23rem]" id="username">User</p>
-      </div>
-      <p id="online" class="absolute text-gray-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]">Offline</p>
+    <div id="profilecard" class="lg:ml-[70rem] lg:-mt-[15rem] md:ml-64 sm:ml-80 w-70 sm:w-96 bg-white rounded m-5 p-5 shadow-md">
+      <p class="text-gray-500 text-xs">{userInfo._id || "012345678901234567890123456"}</p>
+      <img id="avatar" src="https://i.hizliresim.com/ixqwh1j.png" class="mt-3 w-14 h-14 rounded-full" />
+      <p class="absolute left-[7rem] top-[38rem] sm:left-[25.5rem] sm:top-[39.5rem] md:left-[22rem] md:top-[39.5rem] lg:left-[75.5rem] lg:top-[23rem]" id="username">{userInfo.username || "User"}</p>
+      {#if userInfo.online}
+      {#if userInfo.status.presence === "Online"}
+      <p class="absolute text-green-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]">Online</p>
+      {:else if userInfo.status.presence === "Idle"}
+      <p class="absolute text-yellow-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]">Idle</p>
+      {:else if userInfo.status.presence === "Focus"}
+      <p class="absolute text-blue-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]">Focus</p>
+      {:else if userInfo.status.presence === "Busy"}
+      <p class="absolute text-red-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]">Do Not Disturb</p>
+      {/if}
+      {:else}
+      <p class="absolute text-gray-500 text-xs left-[7rem] top-[39.5rem] md:left-[22rem] sm:left-[25.5rem] sm:top-[41rem] lg:left-[75.5rem] lg:top-[24.5rem]">Offline</p>
+      {/if}
+      <p id="status-text" class="text-gray-500 text-xs relative top-3 break-words">No status</p>
       <div class="flex border-l-4 border-gray-500 p-5 rounded mt-5 bg-gray-500/20 break-normal">
         <span id="bio" class="text-gray-700 text-xs">About</span>
       </div>

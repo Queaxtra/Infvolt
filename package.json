@@ -15,7 +15,6 @@
     "vite": "^3.2.3"
   },
   "dependencies": {
-    "revolt-api": "0.5.5-4",
-    "svelte-spa-router": "^3.3.0"
+    "revolt-api": "0.5.5-4"
   }
 }

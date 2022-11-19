@@ -515,10 +515,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.visible{
-  visibility: visible;
-}
-
 .absolute{
   position: absolute;
 }
@@ -539,12 +535,8 @@ video {
   top: 39.5rem;
 }
 
-.left-5{
-  left: 1.25rem;
-}
-
-.bottom-0{
-  bottom: 0px;
+.top-3{
+  top: 0.75rem;
 }
 
 .top-16{
@@ -589,20 +581,8 @@ video {
   margin-top: 0.75rem;
 }
 
-.mt-96{
-  margin-top: 24rem;
-}
-
 .-ml-6{
   margin-left: -1.5rem;
-}
-
-.mt-60{
-  margin-top: 15rem;
-}
-
-.mt-10{
-  margin-top: 2.5rem;
 }
 
 .block{
@@ -621,24 +601,12 @@ video {
   display: flex;
 }
 
-.hidden{
-  display: none;
-}
-
 .h-14{
   height: 3.5rem;
 }
 
 .h-1{
   height: 0.25rem;
-}
-
-.h-60{
-  height: 15rem;
-}
-
-.h-20{
-  height: 5rem;
 }
 
 .w-80{
@@ -651,10 +619,6 @@ video {
 
 .w-48{
   width: 12rem;
-}
-
-.w-60{
-  width: 15rem;
 }
 
 .max-w-xl{
@@ -679,6 +643,10 @@ video {
   word-break: normal;
 }
 
+.break-words{
+  overflow-wrap: break-word;
+}
+
 .rounded{
   border-radius: 0.25rem;
 }
@@ -693,11 +661,6 @@ video {
 
 .border-l-4{
   border-left-width: 4px;
-}
-
-.border-indigo-500{
-  --tw-border-opacity: 1;
-  border-color: rgb(99 102 241 / var(--tw-border-opacity));
 }
 
 .border-gray-500{
@@ -715,18 +678,13 @@ video {
   background-color: rgb(254 70 84 / var(--tw-bg-opacity));
 }
 
+.bg-gray-500\/20{
+  background-color: rgb(107 114 128 / 0.2);
+}
+
 .bg-gray-600{
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-}
-
-.bg-black{
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-gray-500\/20{
-  background-color: rgb(107 114 128 / 0.2);
 }
 
 .p-5{
@@ -836,14 +794,24 @@ video {
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
-.text-gray-800{
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-
 .text-gray-700{
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.text-black{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-yellow-500{
+  --tw-text-opacity: 1;
+  color: rgb(234 179 8 / var(--tw-text-opacity));
+}
+
+.text-blue-500{
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 .placeholder-slate-300::-moz-placeholder{
@@ -860,13 +828,15 @@ video {
   opacity: 0.5;
 }
 
-.opacity-60{
-  opacity: 0.6;
-}
-
 .shadow{
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-md{
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -876,10 +846,6 @@ body {
 }
 
 @media (min-width: 640px){
-  .sm\:visible{
-    visibility: visible;
-  }
-
   .sm\:left-\[25\.5rem\]{
     left: 25.5rem;
   }
@@ -908,28 +874,12 @@ body {
     margin-top: 0.5rem;
   }
 
-  .sm\:mt-60{
-    margin-top: 15rem;
-  }
-
-  .sm\:-ml-\[40rem\]{
-    margin-left: -40rem;
-  }
-
-  .sm\:hidden{
-    display: none;
-  }
-
   .sm\:w-96{
     width: 24rem;
   }
 
   .sm\:text-left{
     text-align: left;
-  }
-
-  .sm\:text-right{
-    text-align: right;
   }
 
   .sm\:text-4xl{
@@ -949,10 +899,6 @@ body {
 }
 
 @media (min-width: 768px){
-  .md\:visible{
-    visibility: visible;
-  }
-
   .md\:left-\[22rem\]{
     left: 22rem;
   }
@@ -969,21 +915,9 @@ body {
   .md\:ml-64{
     margin-left: 16rem;
   }
-
-  .md\:-ml-\[40rem\]{
-    margin-left: -40rem;
-  }
-
-  .md\:hidden{
-    display: none;
-  }
 }
 
 @media (min-width: 1024px){
-  .lg\:visible{
-    visibility: visible;
-  }
-
   .lg\:left-\[75\.5rem\]{
     left: 75.5rem;
   }
@@ -1010,25 +944,5 @@ body {
 
   .lg\:-mt-\[15rem\]{
     margin-top: -15rem;
-  }
-
-  .lg\:mt-40{
-    margin-top: 10rem;
-  }
-
-  .lg\:mt-60{
-    margin-top: 15rem;
-  }
-
-  .lg\:-ml-80{
-    margin-left: -20rem;
-  }
-
-  .lg\:-ml-\[40rem\]{
-    margin-left: -40rem;
-  }
-
-  .lg\:hidden{
-    display: none;
   }
 }
